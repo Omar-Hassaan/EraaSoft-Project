@@ -22,6 +22,9 @@ namespace HealthCareManagementSystem.Data
         public DbSet<PatientDoctor> PatientDoctors { get; set; }
         public DbSet<Receptionist> Receptionists { get; set; }
 
+        // AddModelApplicationUserOtp
+        public DbSet<ApplicationUserOtp> ApplicationUserOtps { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
