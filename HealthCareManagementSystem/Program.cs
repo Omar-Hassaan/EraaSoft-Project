@@ -1,11 +1,12 @@
 using HealthCareManagementSystem.Data;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace HealthCareManagementSystem
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +22,21 @@ namespace HealthCareManagementSystem
                 options.UseSqlServer(connectionString);
             });
 
+            builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            {
+
+                options.User.RequireUniqueEmail = true;
+                options.SignIn.RequireConfirmedEmail = true;
+
+            }).AddEntityFrameworkStores<ApplicationDbContext>()
+           .AddDefaultTokenProviders();
+
+
+            // Transient , Scoped , Singleton
+
+            builder.Services.RegisterConfig();
+
+
             builder.Services.ConfigureApplicationCookie(options =>
             {
                 // Changing the default routes for Identity
@@ -31,6 +47,15 @@ namespace HealthCareManagementSystem
             });
 
             var app = builder.Build();
+
+
+            using (var scope = app.Services.CreateScope())
+            {
+                var inializer = scope.ServiceProvider.GetRequiredService<IDbInitializer>();
+                await inializer.InitializeAsnc();
+            }
+
+
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
@@ -48,7 +73,8 @@ namespace HealthCareManagementSystem
             app.MapStaticAssets();
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}")
+                //pattern: "{controller=Home}/{action=Index}/{id?}")
+                pattern: "{area=Identity}/{controller=Account}/{action=Register}/{id?}")
                 .WithStaticAssets();
 
             app.Run();

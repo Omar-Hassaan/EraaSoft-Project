@@ -1,0 +1,171 @@
+﻿@model HealthCareManagementSystem.ViewModels.LoginVM
+
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    body {
+        background-color: #0d1117;
+    }
+
+    .login-container {
+        min-height: 90vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .login-card {
+        background: #161b22;
+        border: 1px solid #30363d;
+        border-radius: 20px;
+        padding: 40px;
+        width: 100%;
+        max-width: 450px;
+        box-shadow: 0 0 25px rgba(0,0,0,0.4);
+        color: white;
+    }
+
+    .login-title {
+        text-align: center;
+        font-size: 32px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .login-subtitle {
+        text-align: center;
+        color: #8b949e;
+        margin-bottom: 30px;
+    }
+
+    .form-control {
+        background-color: #0d1117;
+        border: 1px solid #30363d;
+        color: white;
+        padding: 12px;
+        border-radius: 10px;
+    }
+
+        .form-control:focus {
+            background-color: #0d1117;
+            color: white;
+            border-color: #58a6ff;
+            box-shadow: none;
+        }
+
+    label {
+        margin-bottom: 8px;
+        font-weight: 500;
+    }
+
+    .btn-login {
+        width: 100%;
+        background: #238636;
+        border: none;
+        padding: 12px;
+        border-radius: 10px;
+        color: white;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+        .btn-login:hover {
+            background: #2ea043;
+        }
+
+    .extra-links {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+        .extra-links a {
+            display: block;
+            color: #58a6ff;
+            text-decoration: none;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+
+            .extra-links a:hover {
+                color: #79c0ff;
+            }
+
+    .form-check-label {
+        color: #c9d1d9;
+    }
+
+    .text-danger {
+        font-size: 14px;
+    }
+</style>
+
+<div class="container login-container">
+
+    <div class="login-card">
+
+        <div class="login-title">
+            Welcome Back
+        </div>
+
+        <div class="login-subtitle">
+            Login to your account
+        </div>
+
+        <form asp-action="Login">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <div class="mb-3">
+                <label asp-for="UserNameOrEmail"></label>
+                <input asp-for="UserNameOrEmail" class="form-control" placeholder="Enter username or email" />
+                <span asp-validation-for="UserNameOrEmail" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Password"></label>
+                <input asp-for="Password" type="password" class="form-control" placeholder="Enter password" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <div class="form-check mb-4">
+                <input class="form-check-input" asp-for="RememberMe" />
+                <label class="form-check-label" asp-for="RememberMe">
+                    Remember Me
+                </label>
+            </div>
+
+            <button type="submit" class="btn-login">
+                Login
+            </button>
+
+        </form>
+
+        <div class="extra-links">
+
+            <a asp-action="Register">
+                Create New Account
+            </a>
+
+            <a asp-action="ResendEmailConfairmation">
+                Resend Email Confirmation
+            </a>
+
+            <a asp-action="ForgetPassword">
+                Forgot Password?
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+<partial name="_Notification" />
