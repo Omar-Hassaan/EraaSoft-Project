@@ -1,6 +1,6 @@
 ﻿using HealthCareManagementSystem.Repositories;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using static HealthCareManagementSystem.Repositories.IRepository;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 
 namespace HealthCareManagementSystem
@@ -13,6 +13,7 @@ namespace HealthCareManagementSystem
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddScoped<IRepository<ApplicationUserOtp>, Repository<ApplicationUserOtp>>();
             services.AddScoped<IDbInitializer, DbInitializer>();
+
         }
     }
 }

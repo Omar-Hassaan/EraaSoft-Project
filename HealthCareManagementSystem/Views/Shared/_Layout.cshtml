@@ -5,7 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - HealthCareManagementSystem</title>
     <script type="importmap"></script>
+
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/HealthCareManagementSystem.styles.css" asp-append-version="true" />
 </head>
@@ -31,6 +37,9 @@
             </div>
         </nav>
     </header>
+
+    <partial name="_Notification" />
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -42,9 +51,41 @@
             &copy; 2026 - HealthCareManagementSystem - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
     <script src="~/js/site.js" asp-append-version="true"></script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+@if (TempData["Success-Notification"] != null)
+{
+    <script>
+        toastr.success('@TempData["Success-Notification"]');
+    </script>
+}
+
+@if (TempData["Error-Notification"] != null)
+{
+    <script>
+        toastr.error('@TempData["Error-Notification"]');
+    </script>
+}
+
+@if (TempData["Warning-Notification"] != null)
+{
+    <script>
+        toastr.warning('@TempData["Warning-Notification"]');
+    </script>
+}
+
+@if (TempData["Info-Notification"] != null)
+{
+    <script>
+        toastr.info('@TempData["Info-Notification"]');
+    </script>
+}
