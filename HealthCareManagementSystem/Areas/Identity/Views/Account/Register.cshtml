@@ -1,0 +1,226 @@
+﻿@model HealthCareManagementSystem.ViewModels.RegisterVM
+
+@{
+    ViewData["Title"] = "Register";
+    Layout = "_Layout";
+}
+
+<style>
+    body {
+        background-color: #0d1117;
+    }
+
+    .register-container {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 40px 0;
+    }
+
+    .register-card {
+        background: #161b22;
+        border: 1px solid #30363d;
+        border-radius: 20px;
+        padding: 40px;
+        width: 100%;
+        max-width: 550px;
+        box-shadow: 0 0 25px rgba(0,0,0,0.4);
+        color: white;
+    }
+
+    .register-title {
+        text-align: center;
+        font-size: 32px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .register-subtitle {
+        text-align: center;
+        color: #8b949e;
+        margin-bottom: 30px;
+        font-size: 15px;
+    }
+
+    label {
+        margin-bottom: 8px;
+        font-weight: 500;
+    }
+
+    .form-control {
+        background-color: #0d1117;
+        border: 1px solid #30363d;
+        color: white;
+        padding: 12px;
+        border-radius: 10px;
+    }
+
+        .form-control:focus {
+            background-color: #0d1117;
+            color: white;
+            border-color: #58a6ff;
+            box-shadow: none;
+        }
+
+    .btn-register {
+        width: 100%;
+        background: #238636;
+        border: none;
+        padding: 12px;
+        border-radius: 10px;
+        color: white;
+        font-weight: bold;
+        transition: 0.3s;
+        margin-top: 10px;
+    }
+
+        .btn-register:hover {
+            background: #2ea043;
+        }
+
+    .login-link {
+        text-align: center;
+        margin-top: 25px;
+    }
+
+        .login-link a {
+            color: #58a6ff;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+            .login-link a:hover {
+                color: #79c0ff;
+            }
+
+    .text-danger {
+        font-size: 14px;
+    }
+</style>
+
+<div class="container register-container">
+
+    <div class="register-card">
+
+        <div class="register-title">
+            Create Account
+        </div>
+
+        <div class="register-subtitle">
+            Join us and start your journey today
+        </div>
+
+        <form action="/Identity/Account/Register" method="post">
+
+            <div asp-validation-summary="ModelOnly"
+                 class="text-danger mb-3"></div>
+
+            <div class="mb-3">
+
+                <label asp-for="Name"></label>
+
+                <input asp-for="Name"
+                       class="form-control"
+                       placeholder="Enter your full name" />
+
+                <span asp-validation-for="Name"
+                      class="text-danger"></span>
+
+            </div>
+
+            <div class="mb-3">
+
+                <label asp-for="Address"></label>
+
+                <input asp-for="Address"
+                       class="form-control"
+                       placeholder="Enter your address" />
+
+                <span asp-validation-for="Address"
+                      class="text-danger"></span>
+
+            </div>
+
+            <div class="mb-3">
+
+                <label asp-for="Email"></label>
+
+                <input asp-for="Email"
+                       class="form-control"
+                       placeholder="Enter your email" />
+
+                <span asp-validation-for="Email"
+                      class="text-danger"></span>
+
+            </div>
+
+            <div class="mb-3">
+
+                <label asp-for="UserName"></label>
+
+                <input asp-for="UserName"
+                       class="form-control"
+                       placeholder="Choose a username" />
+
+                <span asp-validation-for="UserName"
+                      class="text-danger"></span>
+
+            </div>
+
+            <div class="mb-3">
+
+                <label asp-for="Password"></label>
+
+                <input asp-for="Password"
+                       type="password"
+                       class="form-control"
+                       placeholder="Create a password" />
+
+                <span asp-validation-for="Password"
+                      class="text-danger"></span>
+
+            </div>
+
+            <div class="mb-4">
+
+                <label asp-for="ConfirmPassword"></label>
+
+                <input asp-for="ConfirmPassword"
+                       type="password"
+                       class="form-control"
+                       placeholder="Confirm your password" />
+
+                <span asp-validation-for="ConfirmPassword"
+                      class="text-danger"></span>
+
+            </div>
+
+            <button type="submit" class="btn-register">
+                Create Account
+            </button>
+
+        </form>
+
+        <div class="login-link">
+
+            Already have an account?
+
+            <a asp-action="Login">
+                Login
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+<partial name="_Notification" />
+
+

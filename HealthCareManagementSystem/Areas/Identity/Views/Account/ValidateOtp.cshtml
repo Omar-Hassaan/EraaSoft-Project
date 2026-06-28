@@ -1,0 +1,133 @@
+﻿@model HealthCareManagementSystem.ViewModels.ValidateOtpVM
+
+@{
+    ViewData["Title"] = "Verify OTP";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<style>
+    body {
+        background: linear-gradient(to right, #0f172a, #1e293b);
+        min-height: 100vh;
+    }
+
+    .otp-container {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+    }
+
+    .otp-card {
+        width: 100%;
+        max-width: 450px;
+        background: #ffffff;
+        border-radius: 20px;
+        padding: 40px 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .otp-title {
+        text-align: center;
+        font-weight: bold;
+        font-size: 32px;
+        color: #0f172a;
+        margin-bottom: 10px;
+    }
+
+    .otp-subtitle {
+        text-align: center;
+        color: #64748b;
+        margin-bottom: 30px;
+    }
+
+    .form-control {
+        height: 50px;
+        border-radius: 12px;
+        font-size: 18px;
+        text-align: center;
+        letter-spacing: 5px;
+    }
+
+    .verify-btn {
+        width: 100%;
+        height: 50px;
+        border-radius: 12px;
+        font-size: 18px;
+        font-weight: 600;
+        background: #2563eb;
+        border: none;
+        transition: 0.3s;
+    }
+
+        .verify-btn:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+
+    .back-link {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+        .back-link a {
+            text-decoration: none;
+            color: #2563eb;
+            font-weight: 500;
+        }
+
+            .back-link a:hover {
+                text-decoration: underline;
+            }
+</style>
+
+<div class="otp-container">
+
+    <div class="otp-card">
+
+        <h1 class="otp-title">Verify OTP</h1>
+
+        <p class="otp-subtitle">
+            Enter the verification code sent to your email
+        </p>
+
+        <form asp-action="ValidateOtp">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <input asp-for="UserId" hidden />
+
+            <div class="mb-4">
+                <label asp-for="OTP" class="form-label fw-semibold"></label>
+
+                <input asp-for="OTP"
+                       class="form-control"
+                       placeholder="Enter OTP" />
+
+                <span asp-validation-for="OTP" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary verify-btn">
+                Verify Code
+            </button>
+
+        </form>
+
+        <div class="back-link">
+            <a asp-action="Login">
+                Back To Login
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+<partial name="_Notification" />
