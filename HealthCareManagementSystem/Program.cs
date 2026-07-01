@@ -74,7 +74,9 @@ namespace HealthCareManagementSystem
             app.MapControllerRoute(
                 name: "default",
                 //pattern: "{controller=Home}/{action=Index}/{id?}")
-                pattern: "{area=Identity}/{controller=Account}/{action=Register}/{id?}")
+                //pattern: "{area=Identity}/{controller=Account}/{action=Register}/{id?}")
+                pattern: "{area=Admin}/{controller=Clinic}/{action=Create}/{id?}")
+                //pattern: "{area=Admin}/{controller=Doctor}/{action=Create}/{id?}")
                 .WithStaticAssets();
 
             app.Run();

@@ -9,9 +9,9 @@
 
         public int ClinicId { get; set; }
         public Clinic Clinic { get; set; }
-
-        public string ApplicationUserId { get; set; }
-        public ApplicationUser ApplicationUser { get; set; }
+        public string? ImageName { get; set; }
+        public string? ApplicationUserId { get; set; }
+        public ApplicationUser? ApplicationUser { get; set; }
 
         public ICollection<Appointment> Appointments { get; set; }
         public ICollection<DoctorSchedule> DoctorSchedules { get; set; }

@@ -20,7 +20,8 @@
   <ItemGroup>
     <Folder Include="Areas\Patinet\Views\" />
     <Folder Include="Migrations\" />
-    <Folder Include="wwwroot\images\" />
+    <Folder Include="wwwroot\images\Clinics\" />
+    <Folder Include="wwwroot\images\Doctors\" />
   </ItemGroup>
 
 </Project>

@@ -95,7 +95,6 @@ namespace HealthCareManagementSystem.Areas.Identity.Controllers
             }
         }
 
-
         public async Task<IActionResult> UpdatePassword(ApplicationUserVM applicationUserVM)
         {
             try
