@@ -13,6 +13,8 @@ namespace HealthCareManagementSystem
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddScoped<IRepository<ApplicationUserOtp>, Repository<ApplicationUserOtp>>();
             services.AddScoped<IDbInitializer, DbInitializer>();
+            services.AddScoped<IRepository<Clinic>, Repository<Clinic>>();
+            services.AddScoped<IRepository<Doctor>, Repository<Doctor>>();
 
         }
     }
